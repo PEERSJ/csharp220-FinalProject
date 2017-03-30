@@ -1,0 +1,24 @@
+Jeff Peerson  CSharp-220   WPF  Final Project    March 2017
+
+Project Name:   Parts
+
+
+What went well
+1.  Database design and creation
+
+
+
+
+What did I struggle with
+1.  Separation of layers
+2.  Naming conventions
+
+
+
+
+
+What I would do differently, or do if I had more time.
+1. Don't normally store calculated values in the database.
+2. Add more color
+3. Display a picture of each part when selected.
+4. Create additional List Views / inventory reports

@@ -1,0 +1,27 @@
+USE [Inventory]
+GO
+
+/****** Object:  Table [dbo].[Parts]    Script Date: 3/29/2017 6:32:10 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Parts](
+	[PartId] [int] IDENTITY(1,1) NOT NULL,
+	[PartNumber] [nvarchar](30) NOT NULL,
+	[PartDescription] [nvarchar](50) NULL,
+	[PartCost] [decimal](18, 2) NOT NULL,
+	[PartType] [nchar](3) NOT NULL,
+	[PartQOH] [int] NOT NULL,
+	[PartTotalValue]  AS ([PartCost]*[PartQOH]),
+	[PartNote] [nvarchar](250) NULL,
+	[LastUpdatedOn] [datetime] NOT NULL CONSTRAINT [DF_Parts_LastUpdateOn]  DEFAULT (getdate()),
+ CONSTRAINT [PK_Parts] PRIMARY KEY CLUSTERED 
+(
+	[PartId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO

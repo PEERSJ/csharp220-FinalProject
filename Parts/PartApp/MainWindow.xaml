@@ -1,0 +1,48 @@
+﻿<Window x:Class="PartApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PartApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="1025">
+    <StackPanel Orientation="Vertical">
+        <Menu>
+            <MenuItem Header="_File">
+                <MenuItem x:Name="uxFileNew" Header="_New" Click="uxFileNew_Click" />
+                <MenuItem x:Name="uxFileChange" Header="_Modify" Click="uxFileChange_Click" Loaded="uxFileChange_Loaded" />
+                <MenuItem x:Name="uxFileDelete" Header="_Delete" Click="uxFileDelete_Click" Loaded="uxFileDelete_Loaded" />
+            </MenuItem>
+        </Menu>
+        <ListView x:Name="uxPartList" Height="200" SelectionChanged="uxPartList_SelectionChanged">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="uxContextFileNew" Header="_New" Click="uxFileNew_Click"/>
+                    <MenuItem x:Name="uxContextFileChange" Header="_Modify" Click="uxFileChange_Click" Loaded="uxFileChange_Loaded" />
+                    <MenuItem x:Name="uxContextFileDelete" Header="_Delete" Click="uxFileDelete_Click" Loaded="uxFileDelete_Loaded" />
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding PartNumber}" Width="130">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="PartNumber" Click="lvPartsColumnHeader_Click">Part Number</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding PartDescription}" Header="Nomenclature" Width="175" />
+                    <!--<GridViewColumn DisplayMemberBinding="{Binding PartType}" Header="Type" Width="50" />-->
+                    <GridViewColumn DisplayMemberBinding="{Binding PartCost}" Header="Cost" Width="70" />
+                    <GridViewColumn DisplayMemberBinding="{Binding PartType}" Header="Type" Width="40" />
+                    <GridViewColumn DisplayMemberBinding="{Binding PartQOH}" Header="QOH" Width="40" />
+                    <GridViewColumn DisplayMemberBinding="{Binding PartTotalValue}" Header="Total Value" Width="80" />
+                    <GridViewColumn DisplayMemberBinding="{Binding PartNote}" Header="Note" Width="380" />
+                    <GridViewColumn DisplayMemberBinding="{Binding LastUpdatedOn}" Header="Last Updated" Width="95" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Right" Width="70">
+            <Button x:Name="uxClose"  MinWidth="10" HorizontalAlignment="Center" Click="uxClose_Click" Margin="10" Background="#FFC7D49B">Close</Button>
+        </StackPanel>
+    </StackPanel>
+
+</Window>

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PartsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Parts">
+          <Key>
+            <PropertyRef Name="PartId" />
+          </Key>
+          <Property Name="PartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartNumber" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PartDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="PartCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PartType" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="PartQOH" Type="int" Nullable="false" />
+          <Property Name="PartTotalValue" Type="decimal" Precision="29" Scale="2" StoreGeneratedPattern="Computed" />
+          <Property Name="PartNote" Type="nvarchar" MaxLength="250" />
+          <Property Name="LastUpdatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PartsModelStoreContainer">
+          <EntitySet Name="Parts" EntityType="Self.Parts" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PartsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Part">
+          <Key>
+            <PropertyRef Name="PartId" />
+          </Key>
+          <Property Name="PartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PartDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PartCost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PartQOH" Type="Int32" Nullable="false" />
+          <Property Name="PartTotalValue" Type="Decimal" Precision="29" Scale="2" />
+          <Property Name="PartNote" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PartType" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="InventoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Parts" EntityType="Self.Part" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PartsModelStoreContainer" CdmEntityContainer="InventoryEntities">
+          <EntitySetMapping Name="Parts">
+            <EntityTypeMapping TypeName="PartsModel.Part">
+              <MappingFragment StoreEntitySet="Parts">
+                <ScalarProperty Name="PartType" ColumnName="PartType" />
+                <ScalarProperty Name="LastUpdatedOn" ColumnName="LastUpdatedOn" />
+                <ScalarProperty Name="PartNote" ColumnName="PartNote" />
+                <ScalarProperty Name="PartId" ColumnName="PartId" />
+                <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
+                <ScalarProperty Name="PartDescription" ColumnName="PartDescription" />
+                <ScalarProperty Name="PartCost" ColumnName="PartCost" />
+                <ScalarProperty Name="PartQOH" ColumnName="PartQOH" />
+                <ScalarProperty Name="PartTotalValue" ColumnName="PartTotalValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
